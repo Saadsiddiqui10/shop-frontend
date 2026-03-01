@@ -588,7 +588,7 @@ export default function AdminDashboard() {
           </button>
         ))}
 
-        <div style={{ marginTop: 'auto', padding: '24px 24px 0', borderTop: '1px solid var(--border)', marginTop: 32 }}>
+        <div style={{ padding: '24px 24px 0', borderTop: '1px solid var(--border)', marginTop: 32 }}>
           <button className="admin-nav-item" onClick={() => navigate('/')}>
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
               <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" strokeLinecap="round" strokeLinejoin="round"/>
