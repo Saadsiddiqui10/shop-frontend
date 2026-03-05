@@ -1,70 +1,154 @@
-# Getting Started with Create React App
+# MARKET — Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern e-commerce storefront built with React, featuring product browsing, cart management, authentication, and Stripe payments.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🛠 Tech Stack
 
-### `npm start`
+- **React 18** — UI framework
+- **React Router v6** — Client-side routing
+- **Axios** — HTTP requests
+- **Stripe.js + React Stripe** — Payment processing
+- **Context API** — Global state (Auth + Cart)
+- **CSS Variables** — Dark editorial design system
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📁 Project Structure
 
-### `npm test`
+```
+src/
+├── components/
+│   ├── Navbar.js          # Top navigation with cart badge and user menu
+│   ├── Footer.js          # Site footer with links
+│   └── ProductCard.js     # Reusable product card with add-to-cart
+├── context/
+│   ├── AuthContext.js     # User auth state, login/logout/register
+│   └── CartContext.js     # Cart state, persisted to localStorage
+├── pages/
+│   ├── Home.js            # Hero, featured products, CTA banner
+│   ├── Products.js        # Product grid with search, filter, sort, pagination
+│   ├── ProductDetail.js   # Single product page with reviews
+│   ├── Cart.js            # Cart with quantity controls and order summary
+│   ├── Checkout.js        # Stripe card payment + shipping address form
+│   ├── OrderSuccess.js    # Post-payment confirmation page
+│   ├── Orders.js          # User order history
+│   ├── Login.js           # Login form
+│   ├── Register.js        # Registration form
+│   └── AdminDashboard.js  # Admin panel (products + orders management)
+├── services/
+│   ├── api.js             # Axios instance + all API calls
+│   └── adminApi.js        # Admin-specific API calls
+├── App.js                 # Routes and providers
+├── index.css              # Global styles and design system
+└── admin.css              # Admin dashboard styles
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🚀 Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+- Node.js 18+
+- Backend server running (see backend README)
+- Stripe account (free test keys)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+# Install dependencies
+npm install
+```
 
-### `npm run eject`
+### Environment Variables
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Create a `.env` file in the root:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```dotenv
+REACT_APP_API_URL=http://localhost:5000/api
+REACT_APP_STRIPE_PUBLIC_KEY=pk_test_your_stripe_publishable_key
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Run Locally
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm start
+```
 
-## Learn More
+App runs at **http://localhost:3000**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Build for Production
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run build
+```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🌐 Deployment (Vercel)
 
-### Analyzing the Bundle Size
+1. Push to GitHub
+2. Import repo on [vercel.com](https://vercel.com)
+3. Add environment variables:
+   - `REACT_APP_API_URL` = your Render backend URL + `/api`
+   - `REACT_APP_STRIPE_PUBLIC_KEY` = your Stripe publishable key
+4. Click **Deploy**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🔑 Test Accounts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+| Role  | Email           | Password  |
+|-------|-----------------|-----------|
+| User  | test@shop.com   | test1234  |
+| Admin | admin@shop.com  | admin123  |
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 💳 Test Stripe Payments
 
-### Deployment
+| Card Number          | Result            |
+|----------------------|-------------------|
+| 4242 4242 4242 4242  | Payment succeeds  |
+| 4000 0000 0000 9995  | Payment declined  |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Use any future expiry date and any 3-digit CVC.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## ✨ Features
+
+### Customer
+- Browse products with search, category filter, and sort
+- View product detail pages with reviews and ratings
+- Add to cart with quantity controls
+- Cart persists across browser sessions
+- Register and login with JWT authentication
+- Checkout with Stripe card payments
+- Free shipping on orders over $75
+- View order history and status
+
+### Admin (login as admin@shop.com)
+- Overview dashboard with revenue, order, and product stats
+- Create, edit, and delete products
+- View and manage all customer orders
+- Update order status and add tracking numbers
+- Access at `/admin` or via the navbar dropdown
+
+---
+
+## 🗺 Pages & Routes
+
+| Route              | Page            | Auth Required |
+|--------------------|-----------------|---------------|
+| `/`                | Home            | No            |
+| `/products`        | Product Listing | No            |
+| `/products/:id`    | Product Detail  | No            |
+| `/cart`            | Cart            | No            |
+| `/login`           | Login           | No            |
+| `/register`        | Register        | No            |
+| `/checkout`        | Checkout        | Yes           |
+| `/order-success/:id` | Order Success | Yes           |
+| `/orders`          | Order History   | Yes           |
+| `/admin`           | Admin Dashboard | Admin only    |
